@@ -1,0 +1,607 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+
+:root {
+    --primary: #4361ee;
+    --primary-hover: #3a56d4;
+    --success: #2ecc71;
+    --success-hover: #27ae60;
+    --danger: #e74c3c;
+    --danger-hover: #c0392b;
+    --warning: #f39c12;
+    --info: #3498db;
+    --info-hover: #2980b9;
+    --dark: #2c3e50;
+    --light: #ecf0f1;
+    --white: #ffffff;
+    --gray: #95a5a6;
+    --gray-light: #bdc3c7;
+    --shadow: 0 2px 10px rgba(0,0,0,0.1);
+    --shadow-lg: 0 5px 25px rgba(0,0,0,0.15);
+    --radius: 10px;
+    --transition: all 0.3s ease;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Inter', sans-serif;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: #333;
+    line-height: 1.6;
+    min-height: 100vh;
+}
+
+/* ==================== HEADER ==================== */
+.header {
+    background: var(--white);
+    padding: 25px 0;
+    margin-bottom: 30px;
+    box-shadow: var(--shadow-lg);
+}
+
+.header h2 {
+    color: var(--dark);
+    font-weight: 700;
+    margin: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    font-size: 28px;
+}
+
+.header h2 i {
+    color: var(--primary);
+}
+
+.header p {
+    color: var(--gray);
+    margin-top: 8px;
+    font-size: 16px;
+}
+
+/* ==================== CONTAINER ==================== */
+.main-container {
+    padding: 0 20px 40px;
+}
+
+.content-card {
+    background: var(--white);
+    border-radius: var(--radius);
+    padding: 30px;
+    box-shadow: var(--shadow-lg);
+}
+
+/* ==================== BUTTONS ==================== */
+.btn {
+    border-radius: 8px;
+    padding: 10px 20px;
+    font-weight: 500;
+    border: none;
+    cursor: pointer;
+    transition: var(--transition);
+    font-size: 14px;
+}
+
+.btn:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow);
+}
+
+.btn-success {
+    background: var(--success);
+    color: white;
+}
+
+.btn-success:hover {
+    background: var(--success-hover);
+    color: white;
+}
+
+.btn-primary {
+    background: var(--primary);
+    color: white;
+}
+
+.btn-primary:hover {
+    background: var(--primary-hover);
+    color: white;
+}
+
+.btn-info {
+    background: var(--info);
+    color: white;
+    border: none;
+}
+
+.btn-info:hover {
+    background: var(--info-hover);
+    color: white;
+}
+
+.btn-danger {
+    background: var(--danger);
+    color: white;
+    border: none;
+}
+
+.btn-danger:hover {
+    background: var(--danger-hover);
+    color: white;
+}
+
+.btn-secondary {
+    background: #95a5a6;
+    color: white;
+    border: none;
+}
+
+.btn-secondary:hover {
+    background: #7f8c8d;
+    color: white;
+}
+
+/* ==================== TABLE ==================== */
+.table {
+    background: white;
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+.table thead th {
+    background: var(--dark);
+    color: white;
+    border: none;
+    padding: 15px 12px;
+    font-weight: 600;
+    text-align: center;
+    vertical-align: middle;
+}
+
+.table tbody td {
+    padding: 12px;
+    text-align: center;
+    vertical-align: middle;
+    border-bottom: 1px solid #eee;
+}
+
+.table tbody tr:hover {
+    background: #f8f9ff;
+}
+
+.table tbody tr:nth-child(even) {
+    background: #fafafa;
+}
+
+.table tbody tr:nth-child(even):hover {
+    background: #f0f3ff;
+}
+
+/* Employee Photo in Table */
+.employee-photo {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 2px solid var(--primary);
+    cursor: pointer;
+    transition: var(--transition);
+}
+
+.employee-photo:hover {
+    transform: scale(1.2);
+    box-shadow: 0 0 10px rgba(67, 97, 238, 0.3);
+}
+
+.photo-default {
+    background: #f0f0f0;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--gray);
+    font-size: 24px;
+}
+
+/* Action Buttons in Table */
+.btn-group-actions {
+    display: flex;
+    gap: 8px;
+    justify-content: center;
+}
+
+.btn-group-actions .btn {
+    padding: 6px 12px;
+    font-size: 13px;
+}
+
+/* ==================== MODALS ==================== */
+.modal-content {
+    border: none;
+    border-radius: var(--radius);
+    box-shadow: var(--shadow-lg);
+    overflow: hidden;
+}
+
+.modal-header {
+    background: linear-gradient(135deg, var(--primary) 0%, #764ba2 100%);
+    color: white;
+    border: none;
+    padding: 20px 25px;
+}
+
+.modal-header .btn-close-white {
+    filter: brightness(0) invert(1);
+}
+
+.modal-body {
+    padding: 30px;
+}
+
+/* ==================== FORMS ==================== */
+.form-label {
+    font-weight: 600;
+    color: var(--dark);
+    margin-bottom: 8px;
+}
+
+.form-label i {
+    color: var(--primary);
+    margin-right: 8px;
+}
+
+.form-control {
+    border-radius: 8px;
+    border: 2px solid #e0e0e0;
+    padding: 12px 15px;
+    transition: var(--transition);
+}
+
+.form-control:focus {
+    border-color: var(--primary);
+    box-shadow: 0 0 0 0.2rem rgba(67, 97, 238, 0.25);
+}
+
+.form-control.is-invalid {
+    border-color: var(--danger);
+}
+
+.form-control.is-valid {
+    border-color: var(--success);
+}
+
+/* Photo Preview */
+#addPhotoPreview img,
+#editPhotoPreview img {
+    max-width: 150px;
+    max-height: 150px;
+    border-radius: 10px;
+    border: 3px solid var(--primary);
+    box-shadow: var(--shadow);
+}
+
+/* ==================== ALERTS ==================== */
+.alert {
+    border-radius: var(--radius);
+    padding: 15px 20px;
+    margin-bottom: 20px;
+    border: none;
+    box-shadow: var(--shadow);
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.alert-success {
+    background: #d4edda;
+    color: #155724;
+}
+
+.alert-danger {
+    background: #f8d7da;
+    color: #721c24;
+}
+
+.alert i {
+    font-size: 20px;
+}
+
+/* ==================== EMPTY STATE ==================== */
+#emptyState {
+    display: none;
+}
+
+#emptyState i {
+    opacity: 0.3;
+}
+
+/* ==================== DATATABLES CUSTOMIZATION ==================== */
+
+.dataTables_wrapper {
+    font-family: 'Inter', sans-serif;
+    width: 100%;
+}
+
+/* ========== TOP ROW: Show Entries (Left) + Search (Right) ========== */
+
+.dataTables_wrapper .dataTables_length {
+    float: left;
+    margin-bottom: 20px;
+}
+
+.dataTables_wrapper .dataTables_filter {
+    float: right;
+    text-align: right;
+    margin-bottom: 20px;
+}
+
+/* Clearfix for the top row */
+.dataTables_wrapper::after {
+    content: "";
+    display: table;
+    clear: both;
+}
+
+/* Show Entries Label */
+.dataTables_wrapper .dataTables_length label {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-weight: 500;
+    color: var(--dark);
+    font-size: 14px;
+    margin-bottom: 0;
+}
+
+/* Show Entries Dropdown - Fixed with Font Awesome Arrow */
+.dataTables_wrapper .dataTables_length select {
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    border: 2px solid #ddd;
+    border-radius: 6px;
+    padding: 8px 35px 8px 12px;
+    font-size: 14px;
+    font-weight: 500;
+    background-color: white;
+    cursor: pointer;
+    transition: var(--transition);
+    min-width: 75px;
+    position: relative;
+    z-index: 1;
+}
+
+.dataTables_wrapper .dataTables_length select:hover {
+    border-color: var(--primary);
+    background-color: #f8f9ff;
+}
+
+.dataTables_wrapper .dataTables_length select:focus {
+    outline: none;
+    border-color: var(--primary);
+    box-shadow: 0 0 0 3px rgba(67, 97, 238, 0.15);
+}
+
+/* Add custom arrow using Font Awesome pseudo-element */
+.dataTables_wrapper .dataTables_length {
+    position: relative;
+}
+
+.dataTables_wrapper .dataTables_length label::after {
+    content: '\f078';
+    font-family: 'Font Awesome 6 Free';
+    font-weight: 900;
+    font-size: 12px;
+    color: var(--primary);
+    position: absolute;
+    left: 120px;
+    top: 50%;
+    transform: translateY(-50%);
+    pointer-events: none;
+    z-index: 2;
+    transition: var(--transition);
+}
+
+/* Search Label */
+.dataTables_wrapper .dataTables_filter label {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-weight: 500;
+    color: var(--dark);
+    font-size: 14px;
+}
+
+/* Search Input */
+.dataTables_wrapper .dataTables_filter input {
+    border: 2px solid #ddd;
+    border-radius: 6px;
+    padding: 8px 12px;
+    font-size: 14px;
+    font-family: 'Inter', sans-serif;
+    transition: var(--transition);
+    min-width: 200px;
+    margin-left: 0;
+}
+
+.dataTables_wrapper .dataTables_filter input:focus {
+    outline: none;
+    border-color: var(--primary);
+    box-shadow: 0 0 0 3px rgba(67, 97, 238, 0.15);
+}
+
+/* ========== BOTTOM ROW: Info (Left) + Pagination (Right) ========== */
+
+.dataTables_wrapper .dataTables_info {
+    float: left;
+    padding-top: 15px;
+    font-size: 13px;
+    color: var(--gray);
+}
+
+.dataTables_wrapper .dataTables_paginate {
+    float: right;
+    text-align: right;
+    margin-top: 15px;
+    display: flex;
+    align-items: center;
+    gap: 4px;
+}
+
+/* Clearfix for the bottom row */
+.dataTables_wrapper .row:last-child::after {
+    content: "";
+    display: table;
+    clear: both;
+}
+
+/* Pagination Buttons */
+.paginate_button {
+    border-radius: 6px !important;
+    margin: 0 2px !important;
+    padding: 8px 14px !important;
+    font-family: 'Inter', sans-serif !important;
+    font-weight: 500 !important;
+    background: white !important;
+    border: 2px solid #ddd !important;
+    color: var(--dark) !important;
+    transition: var(--transition) !important;
+    cursor: pointer;
+    font-size: 13px !important;
+    min-width: 40px;
+    text-align: center;
+}
+
+.paginate_button:hover {
+    background: var(--primary) !important;
+    color: white !important;
+    border-color: var(--primary) !important;
+    transform: translateY(-1px);
+    box-shadow: 0 2px 8px rgba(67, 97, 238, 0.3);
+}
+
+.paginate_button.current {
+    background: var(--primary) !important;
+    color: white !important;
+    border-color: var(--primary) !important;
+    font-weight: 600 !important;
+    box-shadow: 0 2px 8px rgba(67, 97, 238, 0.3);
+}
+
+.paginate_button.disabled {
+    opacity: 0.4;
+    cursor: not-allowed;
+    pointer-events: none;
+}
+
+.paginate_button.disabled:hover {
+    background: white !important;
+    color: var(--dark) !important;
+    border-color: #ddd !important;
+    transform: none;
+    box-shadow: none;
+}
+
+/* ==================== TOAST NOTIFICATIONS ==================== */
+
+.toast-container {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    z-index: 9999;
+}
+
+.toast {
+    border-radius: var(--radius);
+    box-shadow: var(--shadow-lg);
+    border: none;
+}
+
+/* ==================== RESPONSIVE ==================== */
+
+@media (max-width: 768px) {
+    .header h2 {
+        font-size: 20px;
+    }
+    
+    .content-card {
+        padding: 15px;
+    }
+    
+    .btnAdd {
+        flex-direction: column;
+        gap: 10px;
+    }
+    
+    .btn {
+        width: 100%;
+        justify-content: center;
+    }
+    
+    .btn-group-actions {
+        flex-direction: column;
+        gap: 5px;
+    }
+    
+    .table thead th,
+    .table tbody td {
+        padding: 8px;
+        font-size: 13px;
+    }
+    
+    .employee-photo {
+        width: 40px;
+        height: 40px;
+    }
+    
+    .dataTables_wrapper .dataTables_length,
+    .dataTables_wrapper .dataTables_filter {
+        float: none;
+        text-align: left;
+        margin-bottom: 15px;
+    }
+    
+    .dataTables_wrapper .dataTables_filter input {
+        min-width: 100%;
+        width: 100%;
+    }
+    
+    .dataTables_wrapper .dataTables_info {
+        float: none;
+        text-align: center;
+        padding-top: 10px;
+    }
+    
+    .dataTables_wrapper .dataTables_paginate {
+        float: none;
+        text-align: center;
+        justify-content: center;
+        margin-top: 10px;
+    }
+    
+    .paginate_button {
+        padding: 6px 10px !important;
+        font-size: 12px !important;
+    }
+    
+    .dataTables_wrapper .dataTables_length label::after {
+        left: 105px;
+    }
+}
+
+@media (max-width: 480px) {
+    .header h2 {
+        font-size: 16px;
+    }
+    
+    .content-card {
+        padding: 10px;
+    }
+    
+    .modal-body {
+        padding: 20px;
+    }
+}

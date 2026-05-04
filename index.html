@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Employee Management System - Local Storage</title>
+    
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- DataTables CSS -->
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.13.6/css/dataTables.bootstrap5.min.css">
+    
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Header -->
+    <div class="header">
+        <div class="container">
+            <h2>
+                <i class="fas fa-database"></i> Employee Management System
+            </h2>
+            <p class="text-center mb-0">Local Storage Based CRUD System</p>
+        </div>
+    </div>
+
+    <!-- Main Content -->
+    <div class="main-container">
+        <div class="container">
+            <div class="content-card">
+                
+                <!-- Alert Messages -->
+                <div id="alertContainer"></div>
+
+                <!-- Action Buttons -->
+                <div class="btnAdd mb-3">
+                    <button type="button" class="btn btn-danger me-2" id="deleteAllBtn">
+                        <i class="fas fa-trash-alt"></i> Delete All Records
+                    </button>
+                    <button type="button" class="btn btn-success" id="openAddModalBtn" data-bs-toggle="modal" data-bs-target="#addUserModal">
+                        <i class="fas fa-user-plus"></i> Add New Employee
+                    </button>
+                </div>
+
+                <!-- Table -->
+                <div class="table-responsive">
+                    <table id="employeeTable" class="table table-striped" style="width:100%">
+                        <thead>
+                            <tr>
+                                <th><i class="fas fa-hashtag"></i> ID</th>
+                                <th><i class="fas fa-image"></i> Photo</th>
+                                <th><i class="fas fa-user"></i> Full Name</th>
+                                <th><i class="fas fa-envelope"></i> Email</th>
+                                <th><i class="fas fa-mobile-alt"></i> Mobile</th>
+                                <th><i class="fas fa-city"></i> City</th>
+                                <th><i class="fas fa-cogs"></i> Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody id="tableBody">
+                            <!-- Data will be populated by JavaScript -->
+                        </tbody>
+                    </table>
+                </div>
+
+                <!-- Empty State -->
+                <div id="emptyState" class="text-center py-5" style="display: none;">
+                    <i class="fas fa-users fa-4x text-muted mb-3"></i>
+                    <h4 class="text-muted">No employees found</h4>
+                    <p class="text-muted">Click "Add New Employee" to get started</p>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <!-- Add User Modal -->
+    <div class="modal fade" id="addUserModal" tabindex="-1">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">
+                        <i class="fas fa-user-plus"></i> Add New Employee
+                    </h5>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <form id="addUserForm" novalidate>
+                        <!-- Name -->
+                        <div class="mb-3">
+                            <label for="addName" class="form-label">
+                                <i class="fas fa-user"></i> Full Name *
+                            </label>
+                            <input type="text" class="form-control" id="addName" required 
+                                   placeholder="e.g., John Doe" maxlength="50">
+                            <div class="invalid-feedback"></div>
+                        </div>
+
+                        <!-- Email -->
+                        <div class="mb-3">
+                            <label for="addEmail" class="form-label">
+                                <i class="fas fa-envelope"></i> Email Address *
+                            </label>
+                            <input type="email" class="form-control" id="addEmail" required 
+                                   placeholder="e.g., john@example.com" maxlength="50">
+                            <div class="invalid-feedback"></div>
+                        </div>
+
+                        <!-- Mobile -->
+                        <div class="mb-3">
+                            <label for="addMobile" class="form-label">
+                                <i class="fas fa-mobile-alt"></i> Mobile Number *
+                            </label>
+                            <input type="tel" class="form-control" id="addMobile" required 
+                                   placeholder="e.g., 0123456789" maxlength="20">
+                            <div class="invalid-feedback"></div>
+                        </div>
+
+                        <!-- City -->
+                        <div class="mb-3">
+                            <label for="addCity" class="form-label">
+                                <i class="fas fa-city"></i> City *
+                            </label>
+                            <input type="text" class="form-control" id="addCity" required 
+                                   placeholder="e.g., New York" maxlength="50">
+                            <div class="invalid-feedback"></div>
+                        </div>
+
+                        <!-- Photo (Optional) -->
+                        <div class="mb-3">
+                            <label for="addPhoto" class="form-label">
+                                <i class="fas fa-camera"></i> Photo (Optional)
+                            </label>
+                            <input type="file" class="form-control" id="addPhoto" 
+                                   accept="image/*">
+                            <div class="form-text">Supported formats: JPEG, PNG, GIF. Max size: 2MB</div>
+                            <div id="addPhotoPreview" class="mt-2 text-center"></div>
+                        </div>
+
+                        <!-- Form Buttons -->
+                        <div class="d-flex justify-content-center gap-2 mt-4">
+                            <button type="submit" class="btn btn-success">
+                                <i class="fas fa-plus-circle"></i> Add Employee
+                            </button>
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+                                <i class="fas fa-times"></i> Cancel
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Edit User Modal -->
+    <div class="modal fade" id="editUserModal" tabindex="-1">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">
+                        <i class="fas fa-user-edit"></i> Edit Employee
+                    </h5>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <form id="editUserForm" novalidate>
+                        <input type="hidden" id="editId">
+                        
+                        <!-- Name -->
+                        <div class="mb-3">
+                            <label for="editName" class="form-label">
+                                <i class="fas fa-user"></i> Full Name *
+                            </label>
+                            <input type="text" class="form-control" id="editName" required 
+                                   placeholder="e.g., John Doe" maxlength="50">
+                            <div class="invalid-feedback"></div>
+                        </div>
+
+                        <!-- Email -->
+                        <div class="mb-3">
+                            <label for="editEmail" class="form-label">
+                                <i class="fas fa-envelope"></i> Email Address *
+                            </label>
+                            <input type="email" class="form-control" id="editEmail" required 
+                                   placeholder="e.g., john@example.com" maxlength="50">
+                            <div class="invalid-feedback"></div>
+                        </div>
+
+                        <!-- Mobile -->
+                        <div class="mb-3">
+                            <label for="editMobile" class="form-label">
+                                <i class="fas fa-mobile-alt"></i> Mobile Number *
+                            </label>
+                            <input type="tel" class="form-control" id="editMobile" required 
+                                   placeholder="e.g., 0123456789" maxlength="20">
+                            <div class="invalid-feedback"></div>
+                        </div>
+
+                        <!-- City -->
+                        <div class="mb-3">
+                            <label for="editCity" class="form-label">
+                                <i class="fas fa-city"></i> City *
+                            </label>
+                            <input type="text" class="form-control" id="editCity" required 
+                                   placeholder="e.g., New York" maxlength="50">
+                            <div class="invalid-feedback"></div>
+                        </div>
+
+                        <!-- Photo (Optional) -->
+                        <div class="mb-3">
+                            <label for="editPhoto" class="form-label">
+                                <i class="fas fa-camera"></i> Photo (Optional)
+                            </label>
+                            <input type="file" class="form-control" id="editPhoto" 
+                                   accept="image/*">
+                            <div class="form-text">Leave empty to keep current photo</div>
+                            <div id="editPhotoPreview" class="mt-2 text-center"></div>
+                        </div>
+
+                        <!-- Form Buttons -->
+                        <div class="d-flex justify-content-center gap-2 mt-4">
+                            <button type="submit" class="btn btn-primary">
+                                <i class="fas fa-save"></i> Update Employee
+                            </button>
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+                                <i class="fas fa-times"></i> Cancel
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- View Photo Modal -->
+    <div class="modal fade" id="viewPhotoModal" tabindex="-1">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">
+                        <i class="fas fa-image"></i> Employee Photo
+                    </h5>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body text-center">
+                    <img id="viewPhotoImage" src="" alt="Employee Photo" class="img-fluid rounded">
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="https://code.jquery.com/jquery-3.7.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/1.13.6/js/dataTables.bootstrap5.min.js"></script>
+    
+    <!-- Custom Script -->
+    <script src="app.js"></script>
+</body>
+</html>
